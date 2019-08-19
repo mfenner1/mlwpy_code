@@ -14,12 +14,12 @@ import os.path as osp
 import glob
 import textwrap
 
-import warnings
-warnings.filterwarnings("ignore")
+#import warnings
+#warnings.filterwarnings("ignore")
 # some warnings are stubborn in the extreme, we don't want
 # them in the book
-def warn(*args, **kwargs):  pass
-warnings.warn = warn
+#def warn(*args, **kwargs):  pass
+#warnings.warn = warn
 
 # config related
 np.set_printoptions(precision=4,
@@ -280,3 +280,28 @@ def np_cartesian_product(*arrays):
         possible combinations of input arrays '''
     ndim = len(arrays)
     return np.stack(np.meshgrid(*arrays), axis=-1).reshape(-1, ndim)
+
+# replacement for tsplot is happiest with
+# "tidy" data
+# tidying the numpy array is a bit of a pain
+# xarray is designed to do this "natively" but
+# i don't want to introduce that dependency
+# [seems like there could be a better broadcasting
+#  solution to this]
+def sk_graph_to_tidy(train_test_scores, # y values
+                     eval_points,       # x values
+                     eval_label,        # x column name
+                     num_folds):        # could be inferred
+    train_scores, test_scores = train_test_scores
+    # humph, didn't know np_cartesian was order sensitive
+    labels = np_cartesian_product(eval_points,
+                                  [0,1], # surrogates for train/test
+                                  np.arange(num_folds))
+    score = np.concatenate([train_scores.flatten(),
+                            test_scores.flatten()], axis=0)
+
+    df = pd.DataFrame.from_records(labels)
+    df.columns = [eval_label, 'set', 'fold']
+    df.set = df.set.replace({0:'Train', 1:'Test'})
+    df['score'] = score
+    return df
