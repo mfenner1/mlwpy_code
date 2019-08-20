@@ -14,8 +14,18 @@ import os.path as osp
 import glob
 import textwrap
 
+# finally, a better idiom for warnings
+import sklearn, warnings
+warnings.filterwarnings('ignore',
+                        category=FutureWarning,
+                        module='sklearn')
+
+# if the warnings get overwhelming,
+# you can re-disable with these original lines:
 #import warnings
 #warnings.filterwarnings("ignore")
+
+# and for the really aggressive warnings:
 # some warnings are stubborn in the extreme, we don't want
 # them in the book
 #def warn(*args, **kwargs):  pass
@@ -68,6 +78,7 @@ from sklearn import (cluster,
                      preprocessing as skpre,
                      svm,
                      tree)
+
 
 # the punch line is to predict for a large grid of data points
 # http://scikit-learn.org/stable/auto_examples/neighbors/plot_classification.html
