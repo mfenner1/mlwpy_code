@@ -1,13 +1,13 @@
 # mlwpy_code
 Code from the Pearson Addison-Wesley book Machine Learning with Python for Everyone
 
-### Pyton Environment Setup
-See (./make_environments.md) for details.
+### Python Environment Setup
+See `make_environments.md` for details.
 
 ### Package Versions
 Here are the versions of important packages as of the August 2019 code update.  As a reminder, you can install specific versions of packages using anaconda/conda [as documented here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html#installing-packages).  For example, `conda install scikit-learn=0.20`.  
 
-My plan is to update the book software to the most recent versions of software around once a year (likely near August/September).  I'll update the software versions listed here when I do so.
+My plan is to update the book software to the most recent versions of software around once a year (likely near August/September).  I'll update the software versions listed here when I do so.  The full list of package versions is available in `book_base_env.yml` produced by `conda env export > book_base_env.yml`.
 
 ```  
 matplotlib                3.1.0  
