@@ -1,3 +1,22 @@
+##### Pyton Environment Setup
+If you are willing to use conda, the following steps should get you up and running with a workable environment for the mlwpy code.
+
+1. Download and install anaconda.  https://www.anaconda.com/distribution/#download-section
+2.  Install the following packages.  I did them one at a time to keep the dependency solver from having fits.
+
+```bash
+conda install pydotplus
+conda install memory_profiler
+conda install py-xgboost
+conda install tensorflow
+conda install pymc3
+conda install seaborn
+conda install scikit-image
+conda install opencv
+```
+
+3.  You may wish to setup specific environments for your book related code.  If so, keep reading.
+
 ##### Basic debugging tools for jupyter kernels:
 Creating conda environments and hooking then to jupyter notebook kernels can be a bit tricky.  If you are trying to find a kernel in a notebook and you can't, you'll want to check these two diagnostic outputs:
 
@@ -22,7 +41,7 @@ If you need to know more about this, check out the docs.  WARNING:  do not blind
 ```
 
 PyMC3 was not playing nicely with others, so I decided to have it
-standalone in its own env.  
+stand alone in its own env.  
 ```
 # make a book_pymc3 env and register kernel with jupyter
 # using conda-forge channel b/c pymc3 breaks with main channel
@@ -34,7 +53,7 @@ standalone in its own env.
 % python -m ipykernel install --user --name book_pymc3
 ```
 
-Now, in any environment, you should be able to do something like the following (which is in the `testem` script file):
+Now, in any environment, you should be able to do something like the following (which is in the `testem` script file).  The code simply executes all of the code in all of the notebooks.
 ```
 BASE_NOTEBOOKS="02_Technical_Starter \
 			         03_GettingStartedWithClassification \
