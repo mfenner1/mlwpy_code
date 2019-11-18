@@ -18,10 +18,10 @@ if __name__ == "__main__":
                      'knn':knn_timetest}[method]
 
     iris = datasets.load_iris()
-    (iris_train, iris_test,
-     iris_train_tgt, iris_test_tgt) = skms.train_test_split(iris.data,
-                                                            iris.target,
-                                                            test_size=.25)
+    (iris_train_ftrs, iris_test_ftrs,
+     iris_train_tgt,  iris_test_tgt) = skms.train_test_split(iris.data,
+                                                             iris.target,
+                                                             test_size=.25)
     tup = (iris_train_ftrs, iris_train_tgt, iris_test_ftrs)
     call = ft.partial(test_function, *tup)
     tu = min(timeit.Timer(call).repeat(repeat=3, number=100))
