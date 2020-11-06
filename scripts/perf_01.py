@@ -27,7 +27,7 @@ def msr_time(go, args):
 def msr_mem(go, args):
     base = memory_profiler.memory_usage()[0]
     mu = memory_profiler.memory_usage((go, args),
-                                       max_usage=True)[0]
+                                       max_usage=True)
     print("{:<3}: ~{:.4f} MiB".format(go.__name__, mu-base))
 
 if __name__ == "__main__":

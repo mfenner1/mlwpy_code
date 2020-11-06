@@ -25,5 +25,5 @@ if __name__ == "__main__":
     tup = (iris_train_ftrs, iris_train_tgt, iris_test_ftrs)
     base = memory_profiler.memory_usage()[0]
     mu = memory_profiler.memory_usage((test_function,tup),
-                                       max_usage=True)[0]
+                                       max_usage=True)
     print("{:<3}: ~{:.4f} MiB".format(method, mu-base))

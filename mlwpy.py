@@ -97,7 +97,7 @@ def plot_boundary(ax, data, tgt, model, dims, grid_step = .01):
     preds = model.fit(twoD, tgt).predict(grid_points).reshape(xs.shape)
 
     # plot the predictions at the grid points
-    ax.pcolormesh(xs,ys,preds,cmap=plt.cm.coolwarm)
+    ax.pcolormesh(xs,ys,preds,shading='auto',cmap=plt.cm.coolwarm)
     ax.set_xlim(min_x1, max_x1)#-grid_step)
     ax.set_ylim(min_x2, max_x2)#-grid_step)
 
@@ -219,11 +219,13 @@ def sane_quiver(vs, ax=None, colors=None, origin=(0,0)):
     n = vs.shape[0]
     if not ax: ax = plt.gca()
 
-    # zs = np.zeros(n)
-    # zs = np.broadcast_to(origin, vs.shape)
     orig_x, orig_y = origin
     xs = vs.T[0]  # column to rows, row[0] is xs
     ys = vs.T[1]
+
+    # highly annoying:  quiver doesn't broadcast anymore (?)
+    orig_x = np.full_like(xs, orig_x)
+    orig_x = np.full_like(xs, orig_x)
 
     props = {"angles":'xy', 'scale':1, 'scale_units':'xy'}
     ax.quiver(orig_x, orig_y, xs, ys, color=colors, **props)

@@ -1,36 +1,36 @@
 #!/bin/bash
 
 BASE_NOTEBOOKS="02_Technical_Starter \
-			         03_GettingStartedWithClassification \
-			         04_GettingStartedWithRegression \
-			         05_EvaluatingAndComparingLearners \
-			         06_EvaluatingClassifiers \
-			         07_EvaluatingRegressors \
-			         08_MoreClassificationMethods \
-			         09_MoreRegressionMethods \
-			         10_Manual_Feature_Engineering \
-			         11_Tuning_and_Pipelines \
-			         12_Combining_Learners_Ensemble_Methods \
-			         13_Feature_Engineering_II_Automated \
-							 14_Feature_Engineering_III_Domain \
-							 15_Connections_Between_Learners"
+                03_GettingStartedWithClassification \
+                04_GettingStartedWithRegression \
+                05_EvaluatingAndComparingLearners \
+                06_EvaluatingClassifiers \
+                07_EvaluatingRegressors \
+                08_MoreClassificationMethods \
+                09_MoreRegressionMethods \
+                10_Manual_Feature_Engineering \
+                11_Tuning_and_Pipelines \
+                12_Combining_Learners_Ensemble_Methods \
+                13_Feature_Engineering_II_Automated \
+                14_Feature_Engineering_III_Domain \
+                15_Connections_Between_Learners"
 
 export KMP_DUPLICATE_LIB_OK=TRUE
 export PYTHONWARNINGS=ignore
 
 for curr_nb in $BASE_NOTEBOOKS; do
 	jupyter nbconvert --to notebook \
-	        --execute \
-					--ExecutePreprocessor.kernel_name=book_base  \
-					--ExecutePreprocessor.timeout=-1 \
-					--output-dir=nbout/ \
-					${curr_nb}_code.ipynb
+	                  --execute \
+	                  --ExecutePreprocessor.kernel_name=book_base_2020  \
+	                  --ExecutePreprocessor.timeout=-1 \
+	                  --output-dir=nbout/ \
+	                  ${curr_nb}_code.ipynb
 done
 
 # PYMC3 notebook
-jupyter nbconvert --to notebook \
-				--execute \
-				--ExecutePreprocessor.kernel_name=book_pymc3  \
-				--ExecutePreprocessor.timeout=-1 \
-				--output-dir=nbout/ \
-				15_Connections_Between_Learners_pymc3_code.ipynb
+#jupyter nbconvert --to notebook \
+#									--execute \
+#									--ExecutePreprocessor.kernel_name=book_pymc3  \
+#									--ExecutePreprocessor.timeout=-1 \
+#									--output-dir=nbout/ \
+#									15_Connections_Between_Learners_pymc3_code.ipynb
