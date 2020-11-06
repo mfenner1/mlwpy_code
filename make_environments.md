@@ -9,7 +9,7 @@ conda install pydotplus
 conda install memory_profiler
 conda install py-xgboost
 conda install tensorflow
-conda install pymc3
+conda install -c conda-forge pymc3
 conda install seaborn
 conda install scikit-image
 conda install opencv
@@ -32,26 +32,18 @@ If you need to know more about this, check out the docs.  WARNING:  do not blind
 ##### Create some environments to run notebooks
 ```
 # make a book_base environment and register kernel with jupyter
-% conda create --name book_base \
+% conda create --name book_base_2020 \
      ipykernel keras memory_profiler notebook opencv \
      pydotplus py-xgboost scikit-learn scikit-image \
      seaborn    
-% conda activate book_base
-% python -m ipykernel install --user --name book_base
+% conda activate book_base_2020
+% python -m ipykernel install --user --name book_base_2020
 ```
 
-PyMC3 was not playing nicely with others, so I decided to have it
-stand alone in its own env.  
-```
-# make a book_pymc3 env and register kernel with jupyter
-# using conda-forge channel b/c pymc3 breaks with main channel
-# i don't install notebook here, but you could
-% conda create --name book_pymc3 \
-        -c conda-forge \
-        arviz ipykernel mkl-service pymc3 scikit-learn seaborn
-% conda activate book_pymc3
-% python -m ipykernel install --user --name book_pymc3
-```
+PyMC3 started playing nicely with other packages, *but* when executing
+the code examples in the final notebook, it was failing (some of the Theano
+backend compilation was causing a segmentation fault).  It appears not to need
+its own env at this point.  So, I've rolled everything into `book_base_2020`.
 
 Now, in any environment, you should be able to do something like the following (which is in the `testem` script file).  The code simply executes all of the code in all of the notebooks.
 ```
@@ -78,12 +70,4 @@ for curr_nb in $BASE_NOTEBOOKS; do
 					--output-dir=nbout/ \
 					${curr_nb}_code.ipynb
 done
-
-# pymc3 notebook
-jupyter nbconvert --to notebook \
-				--execute \
-				--ExecutePreprocessor.kernel_name=book_pymc3  \
-				--ExecutePreprocessor.timeout=-1 \
-				--output-dir=nbout/ \
-				15_Connections_Between_Learners_pymc3_code.ipynb
 ```
