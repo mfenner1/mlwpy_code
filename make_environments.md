@@ -37,7 +37,9 @@ If you need to know more about this, check out the docs.  WARNING:  do not blind
      pydotplus py-xgboost scikit-learn scikit-image \
      seaborn    
 % conda activate book_base_2020
+% conda install -c conda-forge pymc3
 % python -m ipykernel install --user --name book_base_2020
+# you can now use book_base_2020 from inside your notebooks
 ```
 
 PyMC3 started playing nicely with other packages, *but* when executing
