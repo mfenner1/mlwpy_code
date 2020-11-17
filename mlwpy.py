@@ -20,6 +20,10 @@ warnings.filterwarnings('ignore',
                         category=FutureWarning,
                         module='sklearn')
 
+warnings.filterwarnings('ignore',
+                        category=FutureWarning,
+                        module='tensor*')
+
 # if the warnings get overwhelming,
 # you can re-disable with these original lines:
 #import warnings
