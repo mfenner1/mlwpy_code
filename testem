@@ -21,7 +21,7 @@ export PYTHONWARNINGS=ignore
 for curr_nb in $BASE_NOTEBOOKS; do
 	jupyter nbconvert --to notebook \
 	                  --execute \
-	                  --ExecutePreprocessor.kernel_name=book_base_2020  \
+	                  --ExecutePreprocessor.kernel_name=book_env_2024_feb \
 	                  --ExecutePreprocessor.timeout=-1 \
 	                  --output-dir=nbout/ \
 	                  ${curr_nb}_code.ipynb

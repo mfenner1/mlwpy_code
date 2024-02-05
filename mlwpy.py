@@ -49,7 +49,8 @@ np.random.seed(42)
 mpl.rcParams['figure.figsize'] = [4.0, 3.0]
 
 # turn on latex tables
-pd.set_option('display.latex.repr', True)
+# pd.set_option('display.latex.repr', True)
+pd.set_option('styler.render.repr', 'latex')
 # monkey-patch for centering Out[] DataFrames
 def _repr_latex_(self):
     return "{\centering\n%s\n\medskip}" % self.to_latex()

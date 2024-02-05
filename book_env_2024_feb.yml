@@ -1,0 +1,21 @@
+name: book_env_2024_feb
+channels:
+  - defaults
+dependencies:
+  - matplotlib
+  - numpy
+  - opencv
+  - pandas
+  - patsy
+  - py-xgboost
+  - pymc3
+  - scikit-learn
+  - scipy
+  - seaborn
+  - statsmodels
+  - tensorflow
+  - notebook
+  - memory_profiler
+  - pydotplus
+  - scikit-image
+prefix: /Users/mfenner/anaconda3/envs/book_env_2024_feb
